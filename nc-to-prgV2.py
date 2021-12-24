@@ -6,11 +6,11 @@ import pandas as pd
 # celldimensions = ?? 166 or 156.75
 # shinglewidth = ?? 156 or 133
 Power = 30
-wsh = 12
+wsh = 21.2
 
 if (wsh >= 5) & (wsh < 18):
     wshcut = 18.05-wsh
-elif (Wsh >= 18) & (wsh < 54):
+elif (wsh >= 18) & (wsh < 54):
     wshcut = 36.1-wsh
 else:
     print("bruh huh why are you cutting shit that large/small")
@@ -18,8 +18,8 @@ else:
 
 # DATAFRAME START initial three rows of laser cuts
 sdf = pd.DataFrame(np.zeros([3,7])*np.nan)
-sdf.iloc[0,0:3] = 'Y-axis', 0, 8.5
-sdf.iloc[1:3,0:3] = 'X-axis', 167, 0
+sdf.iloc[0,0:3] = 'Y-axis#', 0, 8.5
+sdf.iloc[1:3,0:3] = 'X-axis#', 167, 0
 #print(sdf)
 
 
@@ -30,14 +30,14 @@ ROWS = 50
 df = pd.DataFrame(np.zeros([ROWS,7])*np.nan)
 
 iloop = 0
-numloop = int(156//(Wsh+Wshcut) )
+numloop = int(156//(wsh+wshcut) )
 for j in range(0,numloop):
 #for j in range(0,4):
     for i in range(iloop,iloop+6):
         if (i+1) % 6 == 0:
-            df.iloc[i,0:3] = "Y-axis", 0, Wshcut
+            df.iloc[i,0:3] = "Y-axis", 0, wshcut
         elif (i+1) % 3 == 0:
-            df.iloc[i,0:3] = "Y-axis", 0, Wsh
+            df.iloc[i,0:3] = "Y-axis", 0, wsh
         else:
             df.iloc[i,0:3] = "X-axis", 167, 0
     iloop = iloop + 6
@@ -74,12 +74,13 @@ for i in range(1,len(df.index)):
         df.iloc[i,1] = -df.iloc[i,1]
     else:
         pass
-df.iloc[:,3] = 400
-df.iloc[:,4] = "ON"
-df.iloc[:,5] = "Valid"
+df.iloc[:,3] = "400#"
+df.iloc[:,4] = "ON#"
+df.iloc[:,5] = "Valid#"
 df.iloc[:,6] = Power
-print(df)
 
-with open('C:/users/andre/Downloads/ncprgtest.txt', 'a') as f:
-    dfAsString = df.to_string(header=False, index=False)
-    f.write(dfAsString)
+
+df.iloc[:,2] = df.iloc[:,2].astype(str)+ '#'
+df.iloc[:,1] = df.iloc[:,1].astype(str)+ '#'
+print(df)
+df = df.to_string(header=False, index=False)
