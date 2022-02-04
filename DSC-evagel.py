@@ -94,6 +94,29 @@ for i in range(0,9):
     cure.iloc[i,0] = (control25-area.iloc[i,0])/control25
 print(area)
 print(cure)
+
+
+
+
+X = pd.DataFrame(np.zeros([18, 1]))
+Y = pd.DataFrame(np.zeros([18, 1]))
+
+X.iloc[:, 0] = [130, 130, 130, 140, 140, 140, 150, 150,
+                150, 130, 130, 130, 145, 145, 145, 155, 155, 155]
+Y.iloc[:, 0] = [0.37, 0.426, 0.407, 0.547, 0.736, 0.791, 0.780, 0.871,
+                0.888, 0.293, 0.169, 0.494, 0.340, 0.481, 0.560, 0.451, 0.658, 0.828]
+
+
+fig.add_trace(go.Scatter(x=X.iloc[0:9, 0], y=Y.iloc[0:9, 0],
+                         mode='markers',
+                         name='Old Bridgestone EVA',
+                         marker_color='lightskyblue'))
+fig.add_trace(go.Scatter(x=X.iloc[10:18, 0], y=Y.iloc[10:18, 0],
+                         mode='markers',
+                         name='New RC028 EVA'))
+
+
+
 fig = go.Figure()
 # fig.add_trace(go.Scatter(x=dfS130.iloc[:,0], y=dfS130.iloc[:,2],
 #                     mode='markers',
