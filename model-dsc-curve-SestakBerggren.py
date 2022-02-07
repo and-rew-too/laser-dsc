@@ -14,6 +14,16 @@ T= np.linspace(380,520,842)
 
 
 
+# CURVE FITTING intially using Ea just as a broad check to ensure that 
+# 1. the obtained data made sense
+# 2. the more advanced curve fitting below still yields similar Ea values
+# using the KAS Kissinger-Akahira-Sunose equation
+# np.log(heatingrate/Tp**2) = np.log(A*R/E) - (Ea/(8.314*Tp)) 
+# y = const + (1/Tp) * (-Ea/8.314)
+
+
+
+
 alpha = np.zeros((842)) #initialize alpha, fill up this np array
 A = np.exp(16.924)
 m = 0.107
