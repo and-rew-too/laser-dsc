@@ -34,7 +34,7 @@ alpha = np.zeros((Size))
 A = np.exp(16.924)
 m = 0.107
 n = 0.973
-E = 66830
+E = 88269
 HEATRATE= HEATRATE #reshown to iterate the importance of this variable
 alpha[0] = 0.001
 for i in range(0,Size-1):
