@@ -81,8 +81,24 @@ for i in range(0,Size-1):
 fig = make_subplots(
     rows=1, cols=3,
     subplot_titles=("fitted pFF","evolution of cure over time","Fig2b"))
-fig.add_trace(go.Scatter(x=alpha, y=DaDT*HEATRATE),
-              row=1, col=3)
+#fig.add_trace(go.Scatter(x=alpha, y=DaDT*HEATRATE),
+#              row=1, col=3)
 fig.add_trace(go.Scatter(x=TIME, y=alpha),
               row=1, col=2)
+
+fig.add_shape(type='line',
+                x0=0,
+                y0=.5,
+                x1=22,
+                y1=.5,
+                line={'dash': 'dash', 'color': 'red'},
+                xref='x',
+                yref='y'
+)
+fig.update_layout(
+    xaxis_title="Time [min]",
+    yaxis_title="alpha [percentage]",
+    title="Scatterplot of time (temperature) vs cure percentage")
+
+
 fig.show()
